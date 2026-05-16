@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaishnavi Pai | Product Strategy & Growth</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #070b14;
+      --card: rgba(17, 24, 39, 0.65);
+      --border: rgba(255, 255, 255, 0.08);
+      --primary: #60a5fa;
+      --secondary: #a855f7;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --success: #34d399;
+      --shadow: 0 10px 40px rgba(0,0,0,0.45);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top left, rgba(96,165,250,0.2), transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(168,85,247,0.18), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .background-grid {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1300px;
+      margin: auto;
+      padding: 40px 0 60px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(96,165,250,0.35), transparent 70%);
+      top: -80px;
+      right: -80px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      color: var(--success);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 64px;
+      line-height: 1;
+      margin-bottom: 18px;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #60a5fa, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title {
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+      max-width: 700px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #dbeafe;
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-4px);
+      background: rgba(96,165,250,0.15);
+    }
+
+    .hero-right {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    .mini-card h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .mini-card p {
+      color: #e2e8f0;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      padding: 30px;
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--primary);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .experience {
+      grid-column: span 8;
+    }
+
+    .sidebar {
+      grid-column: span 4;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 24px;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #60a5fa, #a855f7);
+      position: absolute;
+      left: -8px;
+      top: 4px;
+      box-shadow: 0 0 12px rgba(96,165,250,0.8);
+    }
+
+    .timeline-item h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item .company {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .timeline-item ul {
+      padding-left: 18px;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .skill {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.05);
+      font-size: 14px;
+      transition: 0.3s ease;
+    }
+
+    .skill:hover {
+      transform: scale(1.03);
+      background: rgba(168,85,247,0.15);
+    }
+
+    .stat-boxes {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .stat h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 14px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+      font-size: 14px;
+    }
+
+    .primary-btn {
+      background: linear-gradient(90deg, #60a5fa, #8b5cf6);
+      color: white;
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(96,165,250,0.25);
+    }
+
+    .floating-glow {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(96,165,250,0.15), transparent 70%);
+      bottom: -80px;
+      left: -80px;
+      animation: floatGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes floatGlow {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience,
+      .sidebar {
+        grid-column: span 12;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: 95%;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero-left,
+      .hero-right,
+      .card {
+        padding: 24px;
+      }
+
+      .skill-grid,
+      .stat-boxes {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-grid"></div>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="hero-left glass">
+        <div class="floating-glow"></div>
+
+        <div class="availability">
+          <div class="dot"></div>
+          Transitioning into Product Strategy & Product Management
+        </div>
+
+        <h1>
+          Vaishnavi <span class="gradient-text">Pai</span>
+        </h1>
+
+        <p class="title">
+          Business Development professional evolving into Product Strategy and Product Management with experience in enterprise sales, growth strategy, user behavior understanding, pipeline generation, and customer-centric problem solving.
+        </p>
+
+        <div class="hero-tags">
+          <div class="tag">Product Strategy</div>
+          <div class="tag">Enterprise Growth</div>
+          <div class="tag">User Discovery</div>
+          <div class="tag">Go-To-Market</div>
+          <div class="tag">Customer Research</div>
+          <div class="tag">Data-Driven Thinking</div>
+        </div>
+
+        <div class="button-group">
+          <button class="btn primary-btn" onclick="downloadResume()">Download Resume</button>
+          <button class="btn secondary-btn" onclick="scrollToSection()">View Experience</button>
+        </div>
+      </div>
+
+      <div class="hero-right glass">
+        <div class="mini-card">
+          <h3>Career Mission</h3>
+          <p>
+            Building meaningful digital products by combining customer empathy, business strategy, and product thinking.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Current Focus</h3>
+          <p>
+            Learning Product Management through practical PRDs, prototype creation, guided discovery systems, user interviews, AI tools, and portfolio projects.
+          </p>
+        </div>
+
+        <div class="mini-card">
+          <h3>Strength Areas</h3>
+          <p>
+            Stakeholder communication, customer insights, growth mindset, problem solving, structured thinking, and enterprise relationship management.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="experience glass card" id="experience">
+        <div class="section-title">Experience</div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h2>Business Development & Enterprise Growth</h2>
+            <div class="company">Salesforce</div>
+            <ul>
+              <li>Managed inside sales account ownership and territory planning for Enterprise and GB accounts.</li>
+              <li>Leveraged installed-base insights including persona changes, new hires, and BU-to-solution mapping.</li>
+              <li>Generated and influenced 111 qualified opportunities contributing to $2.8M in Stage 2 pipeline.</li>
+              <li>Collaborated with cross-functional teams to align customer pain points with solution positioning.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h2>Business & Consumer Research Projects</h2>
+            <div class="company">Carl Zeiss</div>
+            <ul>
+              <li>Worked on Brand Auditing initiatives to understand perception and positioning opportunities.</li>
+              <li>Conducted Consumer Buying Behaviour analysis to identify customer motivations and patterns.</li>
+              <li>Participated in the Excellence League Program focused on strategic thinking and execution.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h2>Product Management Transition Projects</h2>
+            <div class="company">Independent / Learning Projects</div>
+            <ul>
+              <li>Created detailed PRDs for guided discovery experiences in beauty and e-commerce ecosystems.</li>
+              <li>Conducted hypothesis mapping, user interview planning, and customer research workflows.</li>
+              <li>Explored AI-powered prototyping using tools such as Google AI Studio and Lovable.</li>
+              <li>Focused on solving user discovery and engagement problems using behavioral insights.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+
+        <div class="glass card">
+          <div class="section-title">Core Skills</div>
+
+          <div class="skill-grid">
+            <div class="skill">Product Thinking</div>
+            <div class="skill">Market Research</div>
+            <div class="skill">User Interviews</div>
+            <div class="skill">PRD Writing</div>
+            <div class="skill">Enterprise Sales</div>
+            <div class="skill">Stakeholder Mgmt</div>
+            <div class="skill">Customer Discovery</div>
+            <div class="skill">AI Prototyping</div>
+          </div>
+        </div>
+
+        <div class="glass card">
+          <div class="section-title">Highlights</div>
+
+          <div class="stat-boxes">
+            <div class="stat">
+              <h2>111</h2>
+              <p>Qualified Opportunities Generated</p>
+            </div>
+
+            <div class="stat">
+              <h2>$2.8M</h2>
+              <p>Stage 2 Pipeline Influenced</p>
+            </div>
+
+            <div class="stat">
+              <h2>PM</h2>
+              <p>Transitioning Into Product Strategy</p>
+            </div>
+
+            <div class="stat">
+              <h2>AI</h2>
+              <p>Exploring AI-Native Product Workflows</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass card">
+          <div class="section-title">Learning Stack</div>
+
+          <div class="skill-grid">
+            <div class="skill">Figma</div>
+            <div class="skill">Notion</div>
+            <div class="skill">Google AI Studio</div>
+            <div class="skill">Lovable</div>
+            <div class="skill">Github</div>
+            <div class="skill">Replit</div>
+            <div class="skill">Canva</div>
+            <div class="skill">Analytics Thinking</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Designed as a futuristic interactive resume • Built using HTML, CSS & JavaScript
+    </div>
+  </div>
+
+  <script>
+    function scrollToSection() {
+      document.getElementById('experience').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function downloadResume() {
+      window.print();
+    }
+
+    const cards = document.querySelectorAll('.card, .hero-left, .hero-right');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(96,165,250,0.12), rgba(17,24,39,0.75))`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.background = 'rgba(17, 24, 39, 0.65)';
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.animate([
+            { opacity: 0, transform: 'translateY(30px)' },
+            { opacity: 1, transform: 'translateY(0)' }
+          ], {
+            duration: 700,
+            fill: 'forwards'
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll('.timeline-item, .skill, .stat').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
